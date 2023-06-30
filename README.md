@@ -50,4 +50,4 @@ Dice roll audio
 
 Executing the correct win logic
 
-Organizing my code in a consice way
+Organizing my code in a concice way
