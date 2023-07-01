@@ -1,6 +1,7 @@
 # Project 1 Pitch: Snake Eyes Dice Game | Amanda Putney
 
 ## Elevator Pitch
+Do you feel lucky? Well, do ya punk? If so, continue reading... \
 The goal of this 2 player dice game is to get the most points.
 There are 5 rounds of the game:
 
@@ -10,41 +11,37 @@ There are 5 rounds of the game:
 4- K \
 5- E 
 
-For each turn, the current player rolls the dice. If they get any combonation that doesn't include a 'snake eye' (a single pip on the die i.e. a die face with a value of one) they count their current points, and have the option to keep rolling or end their turn. If their roll includes a single snake eye, they don't get any points for that turn. If their roll includes double snake eyes, they lose all accumulated points. 
+RULES: For each turn, the current player rolls the dice. If they get any combination that doesn't include a 'snake eye' (a single pip on the die i.e. a die face with a value of one) they count their current points, and have the option to keep rolling or end their turn. If their roll includes a single snake eye, they don't get any points for that turn. If their roll includes double snake eyes, they lose all accumulated points. 
 The player with the most points on the 5th round wins.
 
 ## Tech Stacks
 Javascript, HTML, CSS
 
 ## Wire frames
-![Alt text](image-1.png)
+![Alt text](wireframe.JPG)
 
 ## MVP GOals
-Display a game in the browser
+Render score board
+
+Show buttons for 'roll' and 'hold' with click events
 
 Switch turns between two players
 
-Design logic for winning & visually display which player won
+Generate random number between 1 and 6 per dice roll for each players turn
 
-Include separate HTML / CSS / JavaScript files
+Show points on the score board for each players turn
 
-Stick with KISS (Keep It Simple Silly) and DRY (Don't Repeat Yourself) principles
+Design logic for winning & visually display which player won on final round
 
-Use Javascript for DOM manipulation
-
-Deploy  game online
-
-Inlcude in game instructions on how to play
-
-Use semantic markup for HTML and CSS (adhere to best practices)
-
-Have a way to reset the game on game over that does not rely on a page refresh
+Have option to reset game after final round
 
 ## Stretch Goals
 
 Dice animations
 
 Dice roll audio
+
+Make something ominous happen when a snake eye is rolled
 
 ## Potential Roadblocks
 
