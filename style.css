@@ -6,6 +6,7 @@
 header {
     font-family: 'Gugi', cursive;
     font-size: 9vmin;
+    text-align: center;
 }
 
 body {
@@ -16,33 +17,90 @@ body {
 main {
     display: grid;
     grid-template-columns: 10vmin 10vmin 10vmin 10vmin 10vmin 10vmin 10vmin;
-    grid-template-rows: 10vmin 10vmin 10vmin 10vmin 10vmin 10vmin 10vmin;
+    grid-template-rows: 10vmin 10vmin 10vmin 10vmin 25vmin 10vmin 10vmin;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Teko', sans-serif;
 }
 
-main * {
+h1 {
+    font-family: 'Teko', sans-serif;
+    border: 3px;
+    /* border-color: rgb(228, 15, 15);
+    border-style: solid; */
+}
+
+h2 {
+    font-family: 'Teko', sans-serif;
+    border: 1px;
+    /* border-color: rgb(228, 15, 15);
+    border-style: solid; */
+}
+
+/* main * {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
-.flex-ctr {
+/* .flex-ctr {
     display: flex;
     justify-content: center;
     align-items: center;
+} */
+
+.image {
+    grid-column: span 3;
 }
 
 button {
-    width: 10vmin;
+    width: 11vmin;
     height: 4vmin;
-    font-family: 'Staatliches', cursive;
+    font-family: 'Teko', sans-serif;
     font-size: 2vmin;
     background-color: black;
     color: white;
+    border-color: white;
+    flex-direction: row;
+    align-items: center;
+    /* display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
 
+#roll {
+    /* flex-direction: row;
+    justify-content: flex-start;
+    align-items: center; */
+    grid-column: 2/3;
+}
+
+#hold {
+    /* flex-direction: row;
+    justify-content: flex-start;
+    align-items: center; */
+    grid-column: 6/7;
+}
+
+
+#reset {
+    /* flex-direction: row;
+    justify-content: flex-start; */
+    grid-column: 4/5;
+}
+
+#rules {
+    grid-column: 4/5;
 
 }
+
 
 button:hover {
     background-color: whitesmoke;
     color: black;
+}
+
+footer {
+    /* display: flex; */
+    align-self: center;
 }
