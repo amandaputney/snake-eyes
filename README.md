@@ -38,6 +38,10 @@ Have option to reset game after final round
 
 ## Stretch Goals
 
+Display message to identify player turn
+
+Display message to announce winner/tie
+
 Dice animations
 
 Dice roll audio
