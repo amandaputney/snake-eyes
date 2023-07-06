@@ -73,6 +73,7 @@ button {
     border-color: white;
     flex-direction: row;
     align-items: center;
+    margin-bottom: 3vmin;
     /* display: flex;
     justify-content: center;
     /* align-items: center; */
@@ -97,6 +98,7 @@ button {
     /* flex-direction: row;
     justify-content: flex-start; */
     grid-column: 4/5;
+    /* margin-bottom: 5vmin; */
 }
 
 #rules {
@@ -114,4 +116,14 @@ button:hover {
 footer {
     /* display: flex; */
     align-self: center;
+}
+
+#watermark {
+    background: url(watermark.png) no-repeat;
+    */ width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 15%;
+    left: 25%;
+    opacity: 13%;
 }
