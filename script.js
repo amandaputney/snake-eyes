@@ -18,6 +18,10 @@ const DIE_LOOKUP = {
 /*----- app's state (variables) -----*/
 let scoreBoard;  // player 1 player 2  0-S  1-N  2-A  3-K  4-E  5-TOTAL
 
+let player1Display = document.getElementsByClassName("p1score");
+
+let player1Score = [0, 0, 0, 0, 0, 0];
+
 let p1rS = 0;
 let p1rN = 0;
 let p1rA = 0;
@@ -32,6 +36,25 @@ let p2rK = 0;
 let p2rE = 0;
 let p2rTotal = 0;
 
+const scoreBoardOBJECT = {
+    p1rS: 0,
+    p1rN: 0,
+    p1rA: 0,
+    p1rK: 0,
+    p1rE: 0,
+    p1rTotal: 0,
+    p2rS: 0,
+    p2rN: 0,
+    p2rA: 0,
+    p2rK: 0,
+    p2rE: 0,
+    p2rTotal: 0
+}
+
+scoreBoard = {
+    p1Score: [0, 0, 0, 0, 0, 0],
+    p2Score: [0, 0, 0, 0, 0, 0]
+};
 
 
 
@@ -53,6 +76,7 @@ const resetButton = document.getElementById('reset');
 document.getElementById('roll').addEventListener('click', handleRoll);
 document.getElementById('reset').addEventListener('click', init);
 document.getElementById('hold').addEventListener('click', handleTurn);
+
 
 /*----- functions -----*/
 init();
@@ -78,6 +102,7 @@ function init() {
         p2Score: [0, 0, 0, 0, 0, 0]
     };
 
+
     // dieRoll = {
     //     die1: [1, 2, 3, 4, 5, 6],
     //     die2: [1, 2, 3, 4, 5, 6]
@@ -100,7 +125,10 @@ function handleTurn() {
 
 
 function renderScoreBoard() {
-    scoreBoard.forEach()
+    // document.getElementsByClassName(p1Score);
+    // player1Display.textContent = player1Score;
+    p1PointsElement = scoreBoard.p1Score;
+    p2PointsElement = scoreBoard.p2Score;
 
     // p1PointsElement.src = DIE_LOOKUP[scoreBoard.p1];
     // p1PointsElement.src = scoreBoard.p1;
@@ -128,8 +156,11 @@ function renderDieRoll() {
     console.log(rollDie1);
     let rollDie2 = Math.floor(Math.random() * 6) + 1;
     console.log(rollDie2);
+
     roll = rollDie1 + rollDie2;
     console.log(roll)
+
+
 
     // while rollDie1 || rollDie2 !== 1
 };
