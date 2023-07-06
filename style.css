@@ -34,6 +34,13 @@ h1 {
 h2 {
     font-family: 'Teko', sans-serif;
     border: 1px;
+    /* font-size: 5vmin; */
+    /* border-color: rgb(228, 15, 15);
+    border-style: solid; */
+}
+
+h3 {
+    font-family: 'Glegoo', serif;
     /* border-color: rgb(228, 15, 15);
     border-style: solid; */
 }
