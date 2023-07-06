@@ -12,6 +12,7 @@ header {
 body {
     height: 100vh;
     flex-direction: column;
+    font-family: 'Teko', sans-serif;
 }
 
 main {
@@ -51,6 +52,8 @@ h2 {
 
 .image {
     grid-column: span 3;
+    content: src("icon.JPG");
+
 }
 
 button {
@@ -91,6 +94,7 @@ button {
 
 #rules {
     grid-column: 4/5;
+    font-family: 'Teko', sans-serif;
 
 }
 
