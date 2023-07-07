@@ -19,29 +19,32 @@ const DIE_LOOKUP = {
 /*----- app's state (variables) -----*/
 // let scoreBoard;  // player 1 player 2  0-S  1-N  2-A  3-K  4-E  5-TOTAL
 // let player1Display = document.getElementsByClassName("p1score");
+// document.getElementById("whichRound").innerHTML = currentRoundCount;
+// document.getElementById("whichPlayer").innerHTML = currentPlayer;
 
 
 // this value increments to indicate what round is is: 0 - 5
 // you can use it to access an array index that hold the score for that turn
 let currentRoundCount = 0;
+// document.getElementById("whichRound").innerHTML = currentRoundCount;
 
 //how many times a player rolls per turn 
 let rollCount = 0;
 
-var player1 = "p1";
-var player2 = "p2";
+var player1 = "1";
+var player2 = "2";
 
 let totalPoints = 0;
 
 // this value holds whose turn it is
 // you will flip it to "p2" when its the second player's turn
-let currentPlayer = "p1";
-
+let currentPlayer = "1";
+// document.getElementById("whichPlayer").innerHTML = currentPlayer;
 
 // an object to hold the scores that will be accessed by the above variables
 const scoreBoard = {
-    p1: [0, 0, 0, 0, 0, 0], //0-S  1-N  2-A  3-K  4-E  5-TOTAL
-    p2: [0, 0, 0, 0, 0, 0]  //0-S  1-N  2-A  3-K  4-E  5-TOTAL
+    1: [0, 0, 0, 0, 0, 0], //0-S  1-N  2-A  3-K  4-E  5-TOTAL
+    2: [0, 0, 0, 0, 0, 0]  //0-S  1-N  2-A  3-K  4-E  5-TOTAL
 };
 
 // let dieRoll;
@@ -93,14 +96,26 @@ function handleRoll() {
 }
 
 function handleTurn() {
-    currentPlayer = currentPlayer === player1 ? player2 : player1;
+    changeTurnAdvanceRound();
+    // currentPlayer = currentPlayer === player1 ? player2 : player1;
+    // render();
     // if (currentPlayer = 2) {
     //     currentRoundCount = currentRoundCount + 1;
     // };
     // currentRoundCount = currentRoundCount + 1;
 }
 
-// function renderScoreBoard() {
+
+function renderScoreBoard() {
+    scoreBoard.forEach(currentPlayer, currentRoundCount)
+    const scoreSlot = `${currentPlayer}r${currentRoundCount}`;
+    const scoreElement = document.getElementById(scoreSlot);
+    console.log(scoreElement)
+};
+
+// renderScoreBoard();
+
+
 //     scoreBoard[currentPlayer][currentRoundCount] += rollSum;
 //     // p1PointsElement.innerHTML = roll;
 
@@ -143,12 +158,14 @@ function rollDie() {
 };
 
 function changeTurnAdvanceRound() {
-    if (currentPlayer === 'p1') {
+    if (currentPlayer === "1") {
         currentPlayer = currentPlayer === player1 ? player2 : player1;
-    } else if (currentPlayer === 'p2') {
+    } else if (currentPlayer === "2") {
         currentPlayer = currentPlayer === player1 ? player2 : player1;
         currentRoundCount = currentRoundCount + 1;
     }
+    document.getElementById("whichRound").innerHTML = currentRoundCount;
+    document.getElementById("whichPlayer").innerHTML = currentPlayer;
 };
 
 //if the current player is player 1 then we want to change the current 
