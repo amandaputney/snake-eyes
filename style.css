@@ -51,7 +51,7 @@ h2 {
 h3 {
     font-family: 'Teko', sans-serif;
     border: 1px;
-    color: rgb(59, 55, 55);
+    color: rgb(87, 84, 84);
     font-size: 24px;
     justify-items: center;
     align-items: center;
@@ -143,11 +143,11 @@ footer {
 }
 
 #watermark {
-    background: url(watermark.png) no-repeat;
+    background: url(images/watermark.png) no-repeat;
     width: 50px;
     height: 50px;
     position: absolute;
-    top: 15%;
-    left: 25%;
+    top: 0%;
+    left: 10%;
     opacity: 18%;
 }
