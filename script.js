@@ -37,7 +37,7 @@ let currentPlayer = "1";
 // document.getElementById("whichPlayer").innerHTML = currentPlayer;
 
 // an object to hold the scores that will be accessed by the above variables
-const scoreBoard = {
+let scoreBoard = {
     1: [0, 0, 0, 0, 0], //0-S  1-N  2-A  3-K  4-E  -removed 5-TOTAL
     2: [0, 0, 0, 0, 0]  //0-S  1-N  2-A  3-K  4-E -removed 5-TOTAL
 };
@@ -80,17 +80,19 @@ function init() {
     //call state objects/calls & then call render
     //don't out let or const in front of this to ensure they remain global variables
 
-    // currentRoundCount = 0;
+    currentRoundCount = 0;
 
-    // scoreBoard = {
-    //     1: [0, 0, 0, 0, 0, 0], //0-S  1-N  2-A  3-K  4-E  5-TOTAL
-    //     2: [0, 0, 0, 0, 0, 0]  //0-S  1-N  2-A  3-K  4-E  5-TOTAL
-    // };
+    scoreBoard = {
+        1: [0, 0, 0, 0, 0, 0], //0-S  1-N  2-A  3-K  4-E  5-TOTAL
+        2: [0, 0, 0, 0, 0, 0]  //0-S  1-N  2-A  3-K  4-E  5-TOTAL
+    };
 
-    // currentPlayer = "1";
+    currentPlayer = "1";
 
-    // currentRoundCount = 0;
+    currentRoundCount = 0;
+
     // winner = null;
+
     // render();
 
 };
@@ -153,7 +155,8 @@ function rollDie() {
     if (rollDie1 === 1 && rollDie2 === 1) {
         //snake eye(s) has been rolled so player score array needs to be cleared to zero
         //advanced the turn
-        scoreBoard[currentPlayer][currentRoundCount] = 0;
+        // scoreBoard[currentPlayer] = [0, 0, 0, 0, 0];
+        scoreBoard[currentPlayer].map((score) => score * 0);
         renderScoreBoard();
         changeTurnAdvanceRound();
     } else if (rollDie1 === 1 || rollDie2 === 1) {
@@ -163,8 +166,9 @@ function rollDie() {
         changeTurnAdvanceRound();
     } else {
         scoreBoard[currentPlayer][currentRoundCount] += rollSum;
+        renderScoreBoard();
     };
-    // console.log(scoreBoard);
+    console.log(scoreBoard);
 };
 
 function changeTurnAdvanceRound() {
@@ -178,17 +182,16 @@ function changeTurnAdvanceRound() {
     document.getElementById("whichPlayer").innerText = currentPlayer;
 };
 
-function renderScoreBoard(score) {
-    // scoreBoard.forEach(currentPlayer, currentRoundCount);
+function renderScoreBoard() {
     const scoreSlot = `p${currentPlayer}r${currentRoundCount}`;
     const scoreElement = document.getElementById(scoreSlot);
-    document.getElementById(scoreSlot).innerHTML = scoreBoard[currentPlayer][currentRoundCount];
+    document.getElementById(scoreSlot).innerText = scoreBoard[currentPlayer][currentRoundCount];
     // console.log(scoreElement)
     const p1TotalPoints = scoreBoard[1].reduce((acc, score) => acc + score, 0);
     const p2TotalPoints = scoreBoard[2].reduce((acc, score) => acc + score, 0);
-    console.log(p1TotalPoints, p2TotalPoints);
-    document.getElementById("p1Total").innerHTML = p1TotalPoints;
-    document.getElementById("p2Total").innerHTML = p2TotalPoints;
+    // console.log(p1TotalPoints, p2TotalPoints);
+    document.getElementById("p1Total").innerText = p1TotalPoints;
+    document.getElementById("p2Total").innerText = p2TotalPoints;
 };
 
 // function renderScoreBoard() {
@@ -240,6 +243,6 @@ function renderScoreBoard(score) {
 function render() {
     // playRound()
     rollDie();
-    renderScoreBoard();
+    // renderScoreBoard();
     // changeTurnAdvanceRound();
 };
