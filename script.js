@@ -105,16 +105,7 @@ function handleTurn() {
     // currentRoundCount = currentRoundCount + 1;
 }
 
-
-function renderScoreBoard() {
-    scoreBoard.forEach(currentPlayer, currentRoundCount)
-    const scoreSlot = `${currentPlayer}r${currentRoundCount}`;
-    const scoreElement = document.getElementById(scoreSlot);
-    console.log(scoreElement)
-};
-
-// renderScoreBoard();
-
+// document.getElementById("p1r0").innerHTML = `p${currentPlayer}r${currentRoundCount}`;
 
 //     scoreBoard[currentPlayer][currentRoundCount] += rollSum;
 //     // p1PointsElement.innerHTML = roll;
@@ -142,18 +133,22 @@ function rollDie() {
     let rollDie2 = Math.floor(Math.random() * 6) + 1;
     const rollSum = rollDie1 + rollDie2;
     console.log(rollDie1, rollDie2, rollSum);
+    document.getElementById("die1").innerText = rollDie1;
+    document.getElementById("die2").innerText = rollDie2;
     if (rollDie1 === 1 && rollDie2 === 1) {
         //snake eye(s) has been rolled so player score array needs to be cleared to zero
         //advanced the turn
         scoreBoard[currentPlayer][currentRoundCount] = 0;
+        renderScoreBoard();
         changeTurnAdvanceRound()
     } else if (rollDie1 === 1 || rollDie2 === 1) {
         //clear the current players score and advance the turn
         scoreBoard[currentPlayer][currentRoundCount] = 0;
+        renderScoreBoard();
         changeTurnAdvanceRound()
     } else {
         scoreBoard[currentPlayer][currentRoundCount] += rollSum;
-    }
+    };
     console.log(scoreBoard);
 };
 
@@ -164,9 +159,20 @@ function changeTurnAdvanceRound() {
         currentPlayer = currentPlayer === player1 ? player2 : player1;
         currentRoundCount = currentRoundCount + 1;
     }
-    document.getElementById("whichRound").innerHTML = currentRoundCount;
-    document.getElementById("whichPlayer").innerHTML = currentPlayer;
+    // document.getElementById("whichRound").innerHTML = currentRoundCount;
+    document.getElementById("whichPlayer").innerText = currentPlayer;
 };
+
+function renderScoreBoard(score) {
+    // scoreBoard.forEach(currentPlayer, currentRoundCount);
+    const scoreSlot = `p${currentPlayer}r${currentRoundCount}`;
+    const scoreElement = document.getElementById(scoreSlot);
+    document.getElementById(scoreSlot).innerHTML = scoreBoard[currentPlayer][currentRoundCount];
+    // console.log(scoreElement)
+};
+
+
+// renderScoreBoard();
 
 //if the current player is player 1 then we want to change the current 
 //player to player 2 and if the current player is player 2 we want to switch 
@@ -207,5 +213,5 @@ function changeTurnAdvanceRound() {
 function render() {
     // playRound()
     rollDie();
-    // renderScoreBoard();
+    renderScoreBoard();
 };

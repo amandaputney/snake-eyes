@@ -18,7 +18,7 @@ body {
 main {
     display: grid;
     grid-template-columns: 10vmin 10vmin 10vmin 10vmin 10vmin 10vmin 10vmin;
-    grid-template-rows: 10vmin 10vmin 10vmin 10vmin 25vmin 10vmin 10vmin;
+    grid-template-rows: 5vmin 5vmin 10vmin 10vmin 30vmin 10vmin 5vmin;
     justify-content: center;
     align-items: center;
     font-family: 'Teko', sans-serif;
@@ -26,24 +26,47 @@ main {
 
 h1 {
     font-family: 'Teko', sans-serif;
-    border: 3px;
+    border: 1px;
+    color: black;
     /* border-color: rgb(228, 15, 15);
     border-style: solid; */
 }
 
+/* div {
+    font-family: 'Teko', sans-serif;
+    font-size: 3vmin;
+    color: grey;
+
+} */
+
 h2 {
     font-family: 'Teko', sans-serif;
     border: 1px;
+    color: black;
     /* font-size: 5vmin; */
     /* border-color: rgb(228, 15, 15);
     border-style: solid; */
 }
 
 h3 {
+    font-family: 'Teko', sans-serif;
+    border: 1px;
+    color: rgb(59, 55, 55);
+    font-size: 24px;
+    justify-items: center;
+    align-items: center;
+    /* font-size: 5vmin; */
+    /* border-color: rgb(228, 15, 15);
+    border-style: solid; */
+}
+
+h4 {
     font-family: 'Glegoo', serif;
     /* border-color: rgb(228, 15, 15);
     border-style: solid; */
 }
+
+
 
 /* main * {
     display: flex;
@@ -59,6 +82,7 @@ h3 {
 
 .image {
     grid-column: span 3;
+    display: flex;
     content: src("icon.JPG");
 
 }
@@ -120,7 +144,7 @@ footer {
 
 #watermark {
     background: url(watermark.png) no-repeat;
-    */ width: 50px;
+    width: 50px;
     height: 50px;
     position: absolute;
     top: 15%;
