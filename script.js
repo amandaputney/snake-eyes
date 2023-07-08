@@ -1,7 +1,3 @@
-// Identify and initialize state variables.
-// Code the main render(), renderScores() & renderResults() functions.
-// Code the click event listener, including the win logic.
-// Update the renderResults() function to render the winner border.
 
 
 /*----- CONSTANTS -----*/
@@ -15,21 +11,16 @@ const DIE_LOOKUP = {
     6: 'images/die6.png'
 };
 
-
 /*----- app's state (variables) -----*/
 // this value increments to indicate what round is is: 0 - 5
 // use it to access an array index that hold the score for that turn
 let currentRoundCount = 0;
-// document.getElementById("whichRound").innerHTML = currentRoundCount;
 
-// //how many times a player rolls per turn 
-// let rollCount = 0;
+let player1 = "1";
+let player2 = "2";
 
-var player1 = "1";
-var player2 = "2";
-
-const p1TotalPoints = 0;
-const p2TotalPoints = 0;
+let p1TotalPoints = 0;
+let p2TotalPoints = 0;
 
 // this value holds whose turn it is
 // you will flip it to "p2" when its the second player's turn
@@ -37,13 +28,10 @@ let currentPlayer = "1";
 // document.getElementById("whichPlayer").innerHTML = currentPlayer;
 
 // an object to hold the scores that will be accessed by the above variables
-let scoreBoard = {
-    1: [0, 0, 0, 0, 0], //0-S  1-N  2-A  3-K  4-E  -removed 5-TOTAL
-    2: [0, 0, 0, 0, 0]  //0-S  1-N  2-A  3-K  4-E -removed 5-TOTAL
+var scoreBoard = {
+    1: [0, 0, 0, 0, 0], //0-S  1-N  2-A  3-K  4-E 
+    2: [0, 0, 0, 0, 0]  //0-S  1-N  2-A  3-K  4-E 
 };
-
-// let dieRoll;
-// let turn;
 
 /*----- cached element references -----*/
 
@@ -51,51 +39,34 @@ const die1Element = document.getElementById("die1Image");
 const die2Element = document.getElementById("die2Image");
 
 
-//points scored per roll
-// const p1PointsElement = document.getElementById('p1score');
-// p1PointsElement.textContent = totalPoints;
-
-// let whichPlayer = document.getElementById('whichPlayer');
-// whichPlayer.innerText = `Turn: ${currentPlayer}`;
-
-// let p1PointsElement = document.getElementsByClassName('p1score');
-// // p1PointsElement.innerHTML(scoreBoard.p1);
-
-
-// let p2PointsElement = document.getElementsByClassName('p2score');
-// let resetButton = document.getElementById('reset');
-
 
 /*----- event listeners -----*/
 
 document.getElementById('roll').addEventListener('click', handleRoll);
-document.getElementById('reset').addEventListener('click', init);
 document.getElementById('hold').addEventListener('click', handleTurn);
-
+document.getElementById("reset").addEventListener('click', initialize);
 
 /*----- functions -----*/
-init();
+// initialize();
 
-function init() {
+function initialize() {
     //call state objects/calls & then call render
-    //don't out let or const in front of this to ensure they remain global variables
+    //don't put let or const in front of this to ensure they remain global variables
 
     currentRoundCount = 0;
-
-    scoreBoard = {
-        1: [0, 0, 0, 0, 0, 0], //0-S  1-N  2-A  3-K  4-E  5-TOTAL
-        2: [0, 0, 0, 0, 0, 0]  //0-S  1-N  2-A  3-K  4-E  5-TOTAL
-    };
 
     currentPlayer = "1";
 
-    currentRoundCount = 0;
+    scoreBoard = {
+        1: [0, 0, 0, 0, 0],
+        2: [0, 0, 0, 0, 0]
+    };
 
-    // winner = null;
+    p1TotalPoints = 0;
+    p2TotalPoints = 0;
 
     // render();
-
-};
+}
 
 function renderDice() {
     die1Element.src = DIE_LOOKUP[rollDie1];
@@ -104,67 +75,59 @@ function renderDice() {
 
 
 function handleRoll() {
-    render();
+    rollDie();
 }
 
 function handleTurn() {
     changeTurnAdvanceRound();
-    // currentPlayer = currentPlayer === player1 ? player2 : player1;
-    // render();
-    // if (currentPlayer = 2) {
-    //     currentRoundCount = currentRoundCount + 1;
-    // };
-    // currentRoundCount = currentRoundCount + 1;
 }
-
-// document.getElementById("p1r0").innerHTML = `p${currentPlayer}r${currentRoundCount}`;
-
-//     scoreBoard[currentPlayer][currentRoundCount] += rollSum;
-//     // p1PointsElement.innerHTML = roll;
-
-// document.getElementsByClassName(p1Score);
-// player1Display.textContent = player1Score;
-// p1PointsElement = scoreBoard.p1Score;
-// p2PointsElement = scoreBoard.p2Score;
-
-// p1PointsElement.src = DIE_LOOKUP[scoreBoard.p1];
-// p1PointsElement.src = scoreBoard.p1;
-// p2PointsElement.src = DIE_LOOKUP[scoreBoard.p2];
-//reduce array iterator
-//square bracket notation
-//connected to dom element set in cached element references and pir constant variable image look up and die roll result
-// };
-
-// function playRound() {
-//     totalPoints += rollSum
-// }
 
 
 function rollDie() {
+    //generates dice values
     let rollDie1 = Math.floor(Math.random() * 6) + 1;
     let rollDie2 = Math.floor(Math.random() * 6) + 1;
+    const rollSum = rollDie1 + rollDie2;
+    console.log(rollDie1, rollDie2, rollSum);
+    document.getElementById("die1").innerText = rollDie1;
+    document.getElementById("die2").innerText = rollDie2;
+
+    ////renders corresponding die PNG 
     function renderDice() {
         die1Element.src = DIE_LOOKUP[rollDie1];
         die2Element.src = DIE_LOOKUP[rollDie2];
     }
     renderDice();
-    const rollSum = rollDie1 + rollDie2;
-    console.log(rollDie1, rollDie2, rollSum);
-    document.getElementById("die1").innerText = rollDie1;
-    document.getElementById("die2").innerText = rollDie2;
+
+    //did player roll snake eye(s)?
     if (rollDie1 === 1 && rollDie2 === 1) {
+        //DOUBLE SNAKE EYE
         //snake eye(s) has been rolled so player score array needs to be cleared to zero
-        //advanced the turn
-        // scoreBoard[currentPlayer] = [0, 0, 0, 0, 0];
-        scoreBoard[currentPlayer].map((score) => score * 0);
+        // scoreBoard.currentPlayer = [0, 0, 0, 0, 0];
+        scoreBoard[currentPlayer] = [0, 0, 0, 0, 0];
+        // scoreBoard = scoreBoard[currentPlayer].map(score => (score * 0));
+        // scoreBoard[currentPlayer].map(score => (score * 0));
+        // scoreBoard = scoreBoard[currentPlayer].map(score => 0 * score);
+        // scoreBoard[currentPlayer].forEach((score, index) => scoreBoard[currentPlayer] = 0);
+        console.log(scoreBoard);
+        // renderScoreBoard(scoreBoard[currentPlayer].map((score) => score * 0));
+        // scoreBoard[currentPlayer][currentRoundCount] = 0;
+        // function forEach(arr, cb) {
+        //     scoreBoard[currentPlayer].forEach(score * 0);
+        // }
         renderScoreBoard();
+        //advanced the turn
         changeTurnAdvanceRound();
+
     } else if (rollDie1 === 1 || rollDie2 === 1) {
+        //SINGLE SNAKE EYE
         //clear the current players score and advance the turn
         scoreBoard[currentPlayer][currentRoundCount] = 0;
         renderScoreBoard();
         changeTurnAdvanceRound();
+
     } else {
+        //NO SNAKE EYES
         scoreBoard[currentPlayer][currentRoundCount] += rollSum;
         renderScoreBoard();
     };
@@ -178,7 +141,6 @@ function changeTurnAdvanceRound() {
         currentPlayer = currentPlayer === player1 ? player2 : player1;
         currentRoundCount = currentRoundCount + 1;
     }
-    // document.getElementById("whichRound").innerHTML = currentRoundCount;
     document.getElementById("whichPlayer").innerText = currentPlayer;
 };
 
@@ -201,23 +163,11 @@ function renderScoreBoard() {
 //     }
 // };
 
-
 // renderScoreBoard();
 
 //if the current player is player 1 then we want to change the current 
 //player to player 2 and if the current player is player 2 we want to switch 
 //to player 1 and advance to the next round/increase turn count
-
-
-
-
-
-
-
-
-
-
-
 
 // checkRoll(rollDie1, rollDie2);
 // // console.log(rollDie1, rollDie2);
@@ -236,13 +186,11 @@ function renderScoreBoard() {
 // // };
 
 
-// while rollDie1 || rollDie2 !== 1
-
-//need to reduce all 
-
-function render() {
-    // playRound()
-    rollDie();
-    // renderScoreBoard();
-    // changeTurnAdvanceRound();
-};
+// visualize all state to dom
+// function render() {
+//     // initialize();
+//     // playRound()
+//     // rollDie();
+//     // renderScoreBoard();
+//     // changeTurnAdvanceRound();
+// };
