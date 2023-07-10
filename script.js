@@ -50,7 +50,7 @@ const die1Element = document.getElementById("die1Image");
 const die2Element = document.getElementById("die2Image");
 const p1Element = document.getElementById("p1");
 const p2Element = document.getElementById("p2");
-const scoreSlot = `p${currentPlayer}r${currentRoundCount}`;
+// const scoreSlot = `p${currentPlayer}r${currentRoundCount}`;
 const boardElements = document.querySelectorAll(".board");
 const winnerElement = document.getElementById("winner");
 // document.getElementById("winner").innerText === winner;
@@ -77,7 +77,7 @@ function initialize() {
     p1TotalPoints = 0;
     p2TotalPoints = 0;
     currentPlayer = "1";
-    // winner = null;
+    winnerElement.innerText = " ";
 
     p1Element.style.color = currentPlayer === "1" ? 'red' : 'black';
     p2Element.style.color = currentPlayer === "2" ? 'red' : 'black';
@@ -118,13 +118,19 @@ function rollDie() {
         die1Element.src = DIE_LOOKUP[rollDie1];
         die2Element.src = DIE_LOOKUP[rollDie2];
     }
+
     renderDice();
+
+    if ((currentPlayer === '2') && (currentRoundCount >= 4)) {
+        getWinner()
+    };
 
     //did player roll snake eye(s)?
     if (rollDie1 === 1 && rollDie2 === 1) {
         //DOUBLE SNAKE EYE
         //snake eye(s) has been rolled so player score array needs to be cleared to zero
         scoreBoard[currentPlayer] = [0, 0, 0, 0, 0];
+
         renderScoreBoard();
         changeTurnAdvanceRound();
 
@@ -133,12 +139,20 @@ function rollDie() {
         //SINGLE SNAKE EYE
         //clear the current players score and advance the turn
         scoreBoard[currentPlayer][currentRoundCount] = 0;
+        // if (currentRoundCount > 4) {
+        //     getWinner();
+
+        // }
         renderScoreBoard();
         changeTurnAdvanceRound();
 
     } else {
         //NO SNAKE EYES
         scoreBoard[currentPlayer][currentRoundCount] += rollSum;
+        // if (currentRoundCount > 4) {
+        //     getWinner();
+
+        // }
         renderScoreBoard();
 
     };
@@ -161,7 +175,7 @@ function changeTurnAdvanceRound() {
 
 
 function renderScoreBoard() {
-    const scoreSlot = `p${currentPlayer}r${currentRoundCount}`;
+    let scoreSlot = `p${currentPlayer}r${currentRoundCount}`;
     // const scoreElement = document.getElementById(scoreSlot);
     document.getElementById(scoreSlot).innerText = scoreBoard[currentPlayer][currentRoundCount];
     // console.log(scoreSlot);
@@ -173,7 +187,6 @@ function renderScoreBoard() {
     console.log(`Round: ${currentRoundCount}`);
     // winner = getWinner();
     // document.getElementById("winner").innerText = winner;
-    getWinner();
 
 };
 
@@ -204,4 +217,19 @@ function getWinner() {
     // }
 };
 
+// function getWinner() {
+//     // winnerElement.style.visibility = (currentRoundCount === 5) ? 'visible' : 'hidden';
+//     // if (currentRoundCount === 5) {
+//     // renderControls();
+//     if (p1TotalPoints === p2TotalPoints) {
+//         winnerElement.innerText = "TIE GAME";
+//         return 'TIE'; //TIE
+//     } else if (p1TotalPoints >= p2TotalPoints) {
+//         winnerElement.innerText = "PLAYER 1 WINS";
+//         return player1; //player 1 wins
+//     } else (p1TotalPoints <= p2TotalPoints)
+//     winnerElement.innerText = "PLAYER 2 WINS";
+//     return player2; //player 1 wins
 
+//     // }
+// };

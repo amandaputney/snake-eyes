@@ -113,6 +113,10 @@ button {
     grid-column: 6/7;
 }
 
+#p1r5 {
+    color: white;
+}
+
 
 #reset {
     /* flex-direction: row;
