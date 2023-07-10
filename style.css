@@ -28,6 +28,7 @@ h1 {
     font-family: 'Teko', sans-serif;
     border: 1px;
     color: black;
+    text-align: center;
     /* border-color: rgb(228, 15, 15);
     border-style: solid; */
 }
@@ -36,6 +37,7 @@ h2 {
     font-family: 'Teko', sans-serif;
     border: 1px;
     color: black;
+    text-align: center;
     /* font-size: 5vmin; */
     /* border-color: rgb(228, 15, 15);
     border-style: solid; */
@@ -48,6 +50,7 @@ h3 {
     font-size: 24px;
     justify-items: center;
     align-items: center;
+    text-align: center;
     /* font-size: 5vmin; */
     /* border-color: rgb(228, 15, 15);
     border-style: solid; */

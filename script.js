@@ -52,7 +52,7 @@ const p1Element = document.getElementById("p1");
 const p2Element = document.getElementById("p2");
 const scoreSlot = `p${currentPlayer}r${currentRoundCount}`;
 const boardElements = document.querySelectorAll(".board");
-// const winnerElement = document.getElementById("winner");
+const winnerElement = document.getElementById("winner");
 // document.getElementById("winner").innerText === winner;
 
 /*----- event listeners -----*/
@@ -77,7 +77,7 @@ function initialize() {
     p1TotalPoints = 0;
     p2TotalPoints = 0;
     currentPlayer = "1";
-    winner = 't';
+    // winner = null;
 
     p1Element.style.color = currentPlayer === "1" ? 'red' : 'black';
     p2Element.style.color = currentPlayer === "2" ? 'red' : 'black';
@@ -126,10 +126,8 @@ function rollDie() {
         //snake eye(s) has been rolled so player score array needs to be cleared to zero
         scoreBoard[currentPlayer] = [0, 0, 0, 0, 0];
         renderScoreBoard();
-        //advanced the turn
         changeTurnAdvanceRound();
-        winner = getWinner();
-        console.log(`winner:  ${winner}`);
+
 
     } else if (rollDie1 === 1 || rollDie2 === 1) {
         //SINGLE SNAKE EYE
@@ -137,17 +135,13 @@ function rollDie() {
         scoreBoard[currentPlayer][currentRoundCount] = 0;
         renderScoreBoard();
         changeTurnAdvanceRound();
-        winner = getWinner();
-        console.log(`winner:  ${winner}`);
 
     } else {
         //NO SNAKE EYES
         scoreBoard[currentPlayer][currentRoundCount] += rollSum;
         renderScoreBoard();
-        winner = getWinner();
-        console.log(`winner:  ${winner}`);
+
     };
-    // console.log(scoreBoard);
 };
 
 function changeTurnAdvanceRound() {
@@ -179,9 +173,7 @@ function renderScoreBoard() {
     console.log(`Round: ${currentRoundCount}`);
     // winner = getWinner();
     // document.getElementById("winner").innerText = winner;
-    // // console.log(`winner:  ${winner}`);
-    // console.log(scoreBoard);
-    // console.log(board);
+    getWinner();
 
 };
 
@@ -196,15 +188,20 @@ function renderScoreBoard() {
 
 
 function getWinner() {
+    // winnerElement.style.visibility = (currentRoundCount === 5) ? 'visible' : 'hidden';
+    // if (currentRoundCount === 5) {
+    // renderControls();
     if (p1TotalPoints === p2TotalPoints) {
-        return 't'; //TIE
+        winnerElement.innerText = "TIE GAME";
+        return 'TIE'; //TIE
     } else if (p1TotalPoints >= p2TotalPoints) {
+        winnerElement.innerText = "PLAYER 1 WINS";
         return player1; //player 1 wins
     } else (p1TotalPoints <= p2TotalPoints)
+    winnerElement.innerText = "PLAYER 2 WINS";
     return player2; //player 1 wins
-    // document.getElementById("winner").innerText = winner;
-    // document.getElementById("winner").innerText = winner;
+
+    // }
 };
 
-// winner = getWinner();
-// console.log(`winner:  ${winner}`);
+
