@@ -19,7 +19,7 @@ The player with the most points on the 5th round wins.
 Javascript, HTML, CSS
 
 ## Wire frames
-![Alt text](wireframe.JPG)
+images/wireframe.JPG
 
 ## MVP GOals
 Render score board
