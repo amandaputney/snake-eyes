@@ -18,7 +18,7 @@ body {
 main {
     display: grid;
     grid-template-columns: 10vmin 10vmin 10vmin 10vmin 10vmin 10vmin 10vmin;
-    grid-template-rows: 8vmin 8vmin 10vmin 10vmin 30vmin 10vmin 5vmin;
+    grid-template-rows: 8vmin 8vmin 10vmin 10vmin 20vmin 10vmin 5vmin;
     justify-content: center;
     align-items: center;
     font-family: 'Teko', sans-serif;
