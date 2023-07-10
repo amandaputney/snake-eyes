@@ -11,9 +11,18 @@ const DIE_LOOKUP = {
     6: 'images/die6.png'
 };
 
+const ROUND_LOOKUP = {
+    0: 'S',
+    1: 'N',
+    2: 'A',
+    3: 'K',
+    4: 'E',
+};
+
 /*----- app's state (variables) -----*/
-// this value increments to indicate what round is is: 0 - 5
+// this value increments to indicate what round is is: 0 - 4 (S-E)
 // use it to access an array index that hold the score for that turn
+//set max number of rounds
 let currentRoundCount = 0;
 
 let player1 = "1";
@@ -29,66 +38,90 @@ let currentPlayer = "1";
 
 // an object to hold the scores that will be accessed by the above variables
 var scoreBoard = {
-    1: [0, 0, 0, 0, 0], //0-S  1-N  2-A  3-K  4-E 
-    2: [0, 0, 0, 0, 0]  //0-S  1-N  2-A  3-K  4-E 
+    1: [0, 0, 0, 0, 0, 0], //0-S  1-N  2-A  3-K  4-E 
+    2: [0, 0, 0, 0, 0, 0]  //0-S  1-N  2-A  3-K  4-E 
 };
+
+let winner = 't';
 
 /*----- cached element references -----*/
 
 const die1Element = document.getElementById("die1Image");
 const die2Element = document.getElementById("die2Image");
-
+const p1Element = document.getElementById("p1");
+const p2Element = document.getElementById("p2");
+const scoreSlot = `p${currentPlayer}r${currentRoundCount}`;
+// const roundElement = document.getElementById("");
 
 
 /*----- event listeners -----*/
 
 document.getElementById('roll').addEventListener('click', handleRoll);
 document.getElementById('hold').addEventListener('click', handleTurn);
-document.getElementById("reset").addEventListener('click', initialize);
+document.getElementById('reset').addEventListener('click', initialize);
 
 /*----- functions -----*/
-// initialize();
 
 function initialize() {
     //call state objects/calls & then call render
     //don't put let or const in front of this to ensure they remain global variables
 
+    renderScoreBoard();
+
+    // scoreBoard[1] = [0, 0, 0, 0, 0];
+    // scoreBoard[2] = [0, 0, 0, 0, 0];
+
+    // scoreBoard = {
+    //     1: [0, 0, 0, 0, 0, 0], //0-S  1-N  2-A  3-K  4-E 
+    //     2: [0, 0, 0, 0, 0, 0]  //0-S  1-N  2-A  3-K  4-E 
+    // };
+
+    // document.getElementById(scoreSlot).innerText = scoreBoard[currentPlayer] = [0, 0, 0, 0, 0];
+
+    scoreBoard[1] = [0, 0, 0, 0, 0];
+    scoreBoard[2] = [0, 0, 0, 0, 0];
     currentRoundCount = 0;
-
-    currentPlayer = "1";
-
-    scoreBoard = {
-        1: [0, 0, 0, 0, 0],
-        2: [0, 0, 0, 0, 0]
-    };
-
     p1TotalPoints = 0;
     p2TotalPoints = 0;
 
-    // render();
-}
+    currentPlayer = "1";
+    winner = 't';
+
+    p1Element.style.color = currentPlayer === "1" ? 'red' : 'black';
+
+
+    die1Element.src = DIE_LOOKUP[6];
+    die2Element.src = DIE_LOOKUP[6];
+};
+
+
+// render();
+
+initialize();
 
 function renderDice() {
     die1Element.src = DIE_LOOKUP[rollDie1];
     die2Element.src = DIE_LOOKUP[rollDie2];
 }
 
-
 function handleRoll() {
     rollDie();
+    // winner = getWinner();
+    // console.log(`winner:  ${winner}`);
 }
 
 function handleTurn() {
     changeTurnAdvanceRound();
+    // winner = getWinner();
+    // console.log(`winner:  ${winner}`);
 }
-
 
 function rollDie() {
     //generates dice values
     let rollDie1 = Math.floor(Math.random() * 6) + 1;
     let rollDie2 = Math.floor(Math.random() * 6) + 1;
     const rollSum = rollDie1 + rollDie2;
-    console.log(rollDie1, rollDie2, rollSum);
+    // console.log(rollDie1, rollDie2, rollSum);
     document.getElementById("die1").innerText = rollDie1;
     document.getElementById("die2").innerText = rollDie2;
 
@@ -103,18 +136,9 @@ function rollDie() {
     if (rollDie1 === 1 && rollDie2 === 1) {
         //DOUBLE SNAKE EYE
         //snake eye(s) has been rolled so player score array needs to be cleared to zero
-        // scoreBoard.currentPlayer = [0, 0, 0, 0, 0];
         scoreBoard[currentPlayer] = [0, 0, 0, 0, 0];
-        // scoreBoard = scoreBoard[currentPlayer].map(score => (score * 0));
-        // scoreBoard[currentPlayer].map(score => (score * 0));
-        // scoreBoard = scoreBoard[currentPlayer].map(score => 0 * score);
-        // scoreBoard[currentPlayer].forEach((score, index) => scoreBoard[currentPlayer] = 0);
-        console.log(scoreBoard);
-        // renderScoreBoard(scoreBoard[currentPlayer].map((score) => score * 0));
-        // scoreBoard[currentPlayer][currentRoundCount] = 0;
-        // function forEach(arr, cb) {
-        //     scoreBoard[currentPlayer].forEach(score * 0);
-        // }
+        // getWinner();
+        // console.log(`winner:  ${winner}`);
         renderScoreBoard();
         //advanced the turn
         changeTurnAdvanceRound();
@@ -123,12 +147,16 @@ function rollDie() {
         //SINGLE SNAKE EYE
         //clear the current players score and advance the turn
         scoreBoard[currentPlayer][currentRoundCount] = 0;
+        // getWinner();
+        // console.log(`winner:  ${winner}`);
         renderScoreBoard();
         changeTurnAdvanceRound();
 
     } else {
         //NO SNAKE EYES
         scoreBoard[currentPlayer][currentRoundCount] += rollSum;
+        // getWinner();
+        // console.log(`winner:  ${winner}`);
         renderScoreBoard();
     };
     console.log(scoreBoard);
@@ -140,51 +168,61 @@ function changeTurnAdvanceRound() {
     } else if (currentPlayer === "2") {
         currentPlayer = currentPlayer === player1 ? player2 : player1;
         currentRoundCount = currentRoundCount + 1;
-    }
-    document.getElementById("whichPlayer").innerText = currentPlayer;
+    };
+    // document.getElementById("whichPlayer").innerHTML = currentPlayer;
+    p1Element.style.color = currentPlayer === "1" ? 'red' : 'black';
+    p2Element.style.color = currentPlayer === "2" ? 'red' : 'black';
+    // winner = getWinner();
+    // console.log(`winner:  ${winner}`);
+
 };
+
 
 function renderScoreBoard() {
     const scoreSlot = `p${currentPlayer}r${currentRoundCount}`;
-    const scoreElement = document.getElementById(scoreSlot);
+    // const scoreElement = document.getElementById(scoreSlot);
     document.getElementById(scoreSlot).innerText = scoreBoard[currentPlayer][currentRoundCount];
     // console.log(scoreElement)
-    const p1TotalPoints = scoreBoard[1].reduce((acc, score) => acc + score, 0);
-    const p2TotalPoints = scoreBoard[2].reduce((acc, score) => acc + score, 0);
+    p1TotalPoints = scoreBoard[1].reduce((acc, score) => acc + score, 0);
+    p2TotalPoints = scoreBoard[2].reduce((acc, score) => acc + score, 0);
     // console.log(p1TotalPoints, p2TotalPoints);
     document.getElementById("p1Total").innerText = p1TotalPoints;
     document.getElementById("p2Total").innerText = p2TotalPoints;
+    console.log(`Round: ${currentRoundCount}`);
+    winner = getWinner();
+    console.log(`winner:  ${winner}`);
 };
 
-// function renderScoreBoard() {
-//     for (let key in scoreBoard) {
-//         const scoreElement = document.getElementById(`p${currentPlayer}r${currentRoundCount}`);
-//         scoreElement.innerText = scoreBoard[key][currentRoundCount];
-//     }
+// function getWinner() {
+//     if (currentRoundCount === 5 && (p1TotalPoints === p2TotalPoints)) {
+//         return 't'; //TIE
+//     } else if (currentRoundCount === 5 && (p1TotalPoints > p2TotalPoints)) {
+//         return '1'; //player 1 wins
+//     } else (currentRoundCount === 5 && (p1TotalPoints < p2TotalPoints))
+//     return '2'; //player 1 wins
 // };
 
-// renderScoreBoard();
 
-//if the current player is player 1 then we want to change the current 
-//player to player 2 and if the current player is player 2 we want to switch 
-//to player 1 and advance to the next round/increase turn count
+// function getWinner() {
+//     if (p1TotalPoints = p2TotalPoints) {
+//         return 't'; //TIE
+//     } else if (p1TotalPoints >= p2TotalPoints) {
+//         return player1; //player 1 wins
+//     } else (p1TotalPoints <= p2TotalPoints)
+//     return player2; //player 1 wins
+// };
 
-// checkRoll(rollDie1, rollDie2);
-// // console.log(rollDie1, rollDie2);
-// // rollSum = rollDie1 + rollDie2;
-// // console.log(scoreBoard);
-// // checkRoll()
-// rollSum = rollDie1 + rollDie2;
-// console.log(scoreBoard);
-// if (rollDie1 || rollDie2 === 1) {
-//     return 0;
-//     handleTurn();
-// }
-// // else {
-// //     console.log(rollSum);
-// //     console.log(scoreBoard);
-// // };
-
+function getWinner() {
+    console.log(p1TotalPoints);
+    console.log(p2TotalPoints);
+    if (p1TotalPoints === p2TotalPoints) {
+        console.log("getWinner()")
+        return 't'; //TIE
+    } else if (p1TotalPoints >= p2TotalPoints) {
+        return '1'; //player 1 wins
+    } else (p1TotalPoints <= p2TotalPoints)
+    return '2'; //player 1 wins
+};
 
 // visualize all state to dom
 // function render() {

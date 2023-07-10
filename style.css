@@ -18,7 +18,7 @@ body {
 main {
     display: grid;
     grid-template-columns: 10vmin 10vmin 10vmin 10vmin 10vmin 10vmin 10vmin;
-    grid-template-rows: 5vmin 5vmin 10vmin 10vmin 30vmin 10vmin 5vmin;
+    grid-template-rows: 8vmin 8vmin 10vmin 10vmin 30vmin 10vmin 5vmin;
     justify-content: center;
     align-items: center;
     font-family: 'Teko', sans-serif;
@@ -121,9 +121,17 @@ button {
 #rules {
     grid-column: 4/5;
     font-family: 'Teko', sans-serif;
+    /* margin: 20px 0px 10px 0px; */
 
 }
 
+#p1Total {
+    color: red;
+}
+
+#p2Total {
+    color: red;
+}
 
 button:hover {
     background-color: whitesmoke;
