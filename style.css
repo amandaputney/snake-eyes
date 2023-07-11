@@ -30,6 +30,7 @@ main {
 h1 {
     font-family: 'Teko', sans-serif;
     /* size: 10vmin; */
+    font-size: 4.5vmin;
     border: 1px;
     color: black;
     text-align: center;
@@ -44,7 +45,7 @@ h2 {
     color: black;
     text-align: center;
     max-width: 100%;
-    /* font-size: 5vmin; */
+    font-size: 3.5vmin;
     /* border-color: rgb(228, 15, 15);
     border-style: solid; */
 }
@@ -53,7 +54,7 @@ h3 {
     font-family: 'Teko', sans-serif;
     border: 1px;
     color: rgb(87, 84, 84);
-    font-size: 24px;
+    font-size: 3vmin;
     justify-items: center;
     align-items: center;
     text-align: center;
@@ -67,6 +68,16 @@ h4 {
     font-family: 'Glegoo', serif;
     /* border-color: rgb(228, 15, 15);
     border-style: solid; */
+}
+
+#watermark {
+    background: url(images/watermark.png) no-repeat;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0%;
+    left: 10%;
+    opacity: 18%;
 }
 
 .image {
@@ -158,14 +169,4 @@ button:hover {
 footer {
     /* display: flex; */
     align-self: center;
-}
-
-#watermark {
-    background: url(images/watermark.png) no-repeat;
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    top: 0%;
-    left: 10%;
-    opacity: 18%;
 }
