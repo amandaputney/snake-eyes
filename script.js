@@ -50,10 +50,10 @@ const die1Element = document.getElementById("die1Image");
 const die2Element = document.getElementById("die2Image");
 const p1Element = document.getElementById("p1");
 const p2Element = document.getElementById("p2");
-// const scoreSlot = `p${currentPlayer}r${currentRoundCount}`;
 const boardElements = document.querySelectorAll(".board");
 const winnerElement = document.getElementById("winner");
-// document.getElementById("winner").innerText === winner;
+
+
 
 /*----- event listeners -----*/
 
@@ -165,12 +165,8 @@ function changeTurnAdvanceRound() {
         currentPlayer = currentPlayer === player1 ? player2 : player1;
         currentRoundCount = currentRoundCount + 1;
     };
-    // document.getElementById("whichPlayer").innerHTML = currentPlayer;
     p1Element.style.color = currentPlayer === "1" ? 'red' : 'black';
     p2Element.style.color = currentPlayer === "2" ? 'red' : 'black';
-
-
-
 };
 
 
@@ -184,26 +180,14 @@ function renderScoreBoard() {
     // console.log(p1TotalPoints, p2TotalPoints);
     document.getElementById("p1Total").innerText = p1TotalPoints;
     document.getElementById("p2Total").innerText = p2TotalPoints;
-    console.log(`Round: ${currentRoundCount}`);
-    // winner = getWinner();
-    // document.getElementById("winner").innerText = winner;
+    // console.log(`Round: ${currentRoundCount}`);
+
 
 };
 
-// function getWinner() {
-//     if (currentRoundCount === 5 && (p1TotalPoints === p2TotalPoints)) {
-//         return 't'; //TIE
-//     } else if (currentRoundCount === 5 && (p1TotalPoints >= p2TotalPoints)) {
-//         return '1'; //player 1 wins
-//     } else (currentRoundCount === 5 && (p1TotalPoints <= p2TotalPoints))
-//     return '2'; //player 1 wins
-// };
 
 
 function getWinner() {
-    // winnerElement.style.visibility = (currentRoundCount === 5) ? 'visible' : 'hidden';
-    // if (currentRoundCount === 5) {
-    // renderControls();
     if (p1TotalPoints === p2TotalPoints) {
         winnerElement.innerText = "TIE GAME";
         return 'TIE'; //TIE
@@ -217,19 +201,3 @@ function getWinner() {
     // }
 };
 
-// function getWinner() {
-//     // winnerElement.style.visibility = (currentRoundCount === 5) ? 'visible' : 'hidden';
-//     // if (currentRoundCount === 5) {
-//     // renderControls();
-//     if (p1TotalPoints === p2TotalPoints) {
-//         winnerElement.innerText = "TIE GAME";
-//         return 'TIE'; //TIE
-//     } else if (p1TotalPoints >= p2TotalPoints) {
-//         winnerElement.innerText = "PLAYER 1 WINS";
-//         return player1; //player 1 wins
-//     } else (p1TotalPoints <= p2TotalPoints)
-//     winnerElement.innerText = "PLAYER 2 WINS";
-//     return player2; //player 1 wins
-
-//     // }
-// };

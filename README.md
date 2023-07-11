@@ -1,5 +1,7 @@
 # Project 1 Pitch: Snake Eyes Dice Game | Amanda Putney
 
+## https://amandaputney.github.io/project-1/
+
 ## Elevator Pitch
 Do you feel lucky? _Well, do ya punk?_ If so, continue reading... 
 
@@ -19,7 +21,7 @@ The player with the most points on the 5th round wins.
 Javascript, HTML, CSS
 
 ## Wire frames
-images/wireframe.JPG
+![Alt text](images/wireframe.JPG)
 
 ## MVP GOals
 Render score board
