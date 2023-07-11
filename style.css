@@ -1,5 +1,5 @@
 * {
-    font-family: Arial, Helvetica, sans-serif;
+    /* font-family: Arial, Helvetica, sans-serif; */
     box-sizing: border-box;
 }
 
@@ -11,8 +11,10 @@ header {
 
 body {
     height: 100vh;
+    display: flex;
     flex-direction: column;
     font-family: 'Teko', sans-serif;
+    max-width: 100%;
 }
 
 main {
@@ -22,13 +24,16 @@ main {
     justify-content: center;
     align-items: center;
     font-family: 'Teko', sans-serif;
+    max-width: 100%;
 }
 
 h1 {
     font-family: 'Teko', sans-serif;
+    /* size: 10vmin; */
     border: 1px;
     color: black;
     text-align: center;
+    max-width: 100%;
     /* border-color: rgb(228, 15, 15);
     border-style: solid; */
 }
@@ -38,6 +43,7 @@ h2 {
     border: 1px;
     color: black;
     text-align: center;
+    max-width: 100%;
     /* font-size: 5vmin; */
     /* border-color: rgb(228, 15, 15);
     border-style: solid; */
@@ -51,6 +57,7 @@ h3 {
     justify-items: center;
     align-items: center;
     text-align: center;
+    max-width: 100%;
     /* font-size: 5vmin; */
     /* border-color: rgb(228, 15, 15);
     border-style: solid; */
@@ -62,25 +69,18 @@ h4 {
     border-style: solid; */
 }
 
-
-
-/* main * {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
-
-/* .flex-ctr {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
-
 .image {
     grid-column: span 3;
     display: flex;
-    content: src("icon.JPG");
+    /* content: src("icon.JPG"); */
+    /* max-width: 100%; */
 
+}
+
+img {
+    max-width: 100%;
+    min-width: 22vmin;
+    height: auto;
 }
 
 button {
@@ -94,22 +94,14 @@ button {
     flex-direction: row;
     align-items: center;
     margin-bottom: 3vmin;
-    /* display: flex;
-    justify-content: center;
-    /* align-items: center; */
 }
 
 #roll {
-    /* flex-direction: row;
-    justify-content: flex-start;
-    align-items: center; */
     grid-column: 2/3;
 }
 
 #hold {
-    /* flex-direction: row;
-    justify-content: flex-start;
-    align-items: center; */
+
     grid-column: 6/7;
 }
 

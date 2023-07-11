@@ -10,14 +10,6 @@ const DIE_LOOKUP = {
     6: 'images/die6.png'
 };
 
-// const ROUND_LOOKUP = {
-//     0: 'S',
-//     1: 'N',
-//     2: 'A',
-//     3: 'K',
-//     4: 'E',
-// };
-
 /*----- app's state (variables) -----*/
 // this value increments to indicate what round is is: 0 - 4 (S-E)
 // use it to access an array index that hold the score for that turn
