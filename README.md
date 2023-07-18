@@ -1,4 +1,4 @@
-# Project 1 Pitch: Snake Eyes Dice Game | Amanda Putney
+# Snake Eyes Dice Game | Amanda Putney
 
 ## https://amandaputney.github.io/project-1/
 
