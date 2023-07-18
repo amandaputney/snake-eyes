@@ -15,6 +15,7 @@ body {
     flex-direction: column;
     font-family: 'Teko', sans-serif;
     max-width: 100%;
+    background-color: oldlace;
 }
 
 main {
@@ -154,11 +155,11 @@ button {
 }
 
 #p1Total {
-    color: red;
+    color: tomato;
 }
 
 #p2Total {
-    color: red;
+    color: tomato;
 }
 
 button:hover {
