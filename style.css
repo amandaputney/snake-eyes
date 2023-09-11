@@ -170,7 +170,18 @@ button:hover {
     color: black;
 }
 
+.icon {
+    color: rgb(215, 209, 209);
+    padding: 15px;
+    border-radius: 50%;
+}
+
+.icon:hover {
+    cursor: pointer;
+    background-color: tomato;
+}
+
 footer {
-    /* display: flex; */
     align-self: center;
+    bottom: 0;
 }
