@@ -1,6 +1,6 @@
 # Snake Eyes Dice Game | Amanda Putney
 
-## https://amandaputney.github.io/project-1/
+## https://amandaputney.github.io/snake-eyes/
 
 ## Elevator Pitch
 Do you feel lucky? _Well, do ya punk?_ If so, continue reading... 
