@@ -23,7 +23,7 @@ Javascript, HTML, CSS
 ## Wire frames
 ![Alt text](images/wireframe.JPG)
 
-## MVP GOals
+## MVP Goals
 Render score board
 
 Show buttons for 'roll' and 'hold' with click events
