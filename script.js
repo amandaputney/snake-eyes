@@ -1,6 +1,6 @@
 
 /*----- CONSTANTS -----*/
-//create die face image lookup object
+//die face image lookup object
 const DIE_LOOKUP = {
     1: 'images/die1.png',
     2: 'images/die2.png',
@@ -74,8 +74,8 @@ function initialize() {
     p1Element.style.color = currentPlayer === "1" ? 'red' : 'black';
     p2Element.style.color = currentPlayer === "2" ? 'red' : 'black';
 
-    die1Element.src = DIE_LOOKUP[6];
-    die2Element.src = DIE_LOOKUP[6];
+    die1Element.src = DIE_LOOKUP[1];
+    die2Element.src = DIE_LOOKUP[1];
 
     renderScoreBoard();
 };
